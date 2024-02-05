@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { useLayoutEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
@@ -57,31 +56,38 @@ const NavLink = ({url, name, urlClicked, urlMouseDown, linkGoTo}: {url: string, 
     }
 
     const [currentImage, setCurrentImage] = useState(url)
+    const [isClicked, setIsClicked] = useState(false)
+    const [dragOut, setDragOut] = useState(false)
 
     const router = useRouter()
 
     useEffect(() => {
         if (mouseDown) {
-            console.log('1')
             setCurrentImage(urlMouseDown)
         }else if(router.pathname === linkGoTo){
             setCurrentImage(urlClicked)
-            console.log('2')
+            setIsClicked(true)
         }else {
             setCurrentImage(url)
-            console.log('3')
+            setIsClicked(false)
         }
     }, [mouseDown, clicked, url, urlClicked, urlMouseDown, router.pathname, linkGoTo])
 
     return (
         <div 
+            draggable={false}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onMouseDown={handleMouseDown}
-            onMouseUp={() => setMouseDown(false)}
+            onMouseUp={() => {setMouseDown(false)
+            setDragOut(false)}}
             onClick={handleClick}
+            onDragEnd={() => {
+                setCurrentImage(isClicked ? urlClicked : url)
+                setDragOut(true)
+            }}
             
-            className={`py-3 my-2 text-xl w-5/6 cursor-pointer hover:bg-slate-100 hover:rounded-lg px-4 transition-all ${mouseDown && 'text-slate-300 scale-90 '} ${router.pathname === linkGoTo ? 'text-[#01E1FF] font-black duration-0' : 'font-semibold duration-100'}`}
+            className={`py-3 my-2 text-xl w-5/6 cursor-pointer hover:bg-slate-100 hover:rounded-lg px-4 transition-all ${mouseDown && 'text-slate-300 scale-90 '} ${router.pathname === linkGoTo ? 'text-[#01E1FF] font-black duration-0' : 'font-semibold duration-100'} ${dragOut && (isClicked ? `text-[#01E1FF] scale-100` : 'text-black scale-100')}`}
         > 
             <Link href={linkGoTo}>
                 <div>
