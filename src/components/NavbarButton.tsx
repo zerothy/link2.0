@@ -87,7 +87,7 @@ const NavLink = ({url, name, urlClicked, urlMouseDown, linkGoTo}: {url: string, 
                 setDragOut(true)
             }}
             
-            className={`py-3 my-2 text-xl w-5/6 cursor-pointer hover:bg-slate-100 hover:rounded-lg px-4 transition-all ${mouseDown && 'text-slate-300 scale-90 '} ${router.pathname === linkGoTo ? 'text-[#01E1FF] font-black duration-0' : 'font-semibold duration-100'} ${dragOut && (isClicked ? `text-[#01E1FF] scale-100` : 'text-black scale-100')}`}
+            className={`py-3 my-2 text-xl min-w-max w-5/6 cursor-pointer hover:bg-slate-100 hover:rounded-lg px-4 transition-all ${mouseDown && 'text-slate-300 scale-90 '} ${router.pathname === linkGoTo ? 'text-[#01E1FF] font-black duration-0' : 'font-semibold duration-100'} ${dragOut && (isClicked ? `text-[#01E1FF] scale-100` : 'text-black scale-100')}`}
         > 
             <Link href={linkGoTo}>
                 <div>
