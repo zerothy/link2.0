@@ -1,5 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Link
+
+![Link](https://i.imgur.com/he9l4bE.png "Link")
+<p>This project is a Twitter replica made for the purpose of practicing my React and Typescript. This project is built using React, Typescript, and Tailwind CSS.</p>
+
+<p>Link to the project github : <a href="https://github.com/zerothy/link2.0">Link Project</a></p>
+
 ## Getting Started
 
 First, run the development server:
